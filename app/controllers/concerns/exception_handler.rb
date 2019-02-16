@@ -15,7 +15,7 @@ module ExceptionHandler
 
   included do
     rescue_from ::ActionController::RoutingError do |e|
-      json_response({message: e.message}, :not_found)
+      json_response({ message: e.message }, :not_found)
     end
     rescue_from StandardError, with: :unhandled_exception
     rescue_from ActiveRecord::RecordInvalid, with: :four_twenty_two
@@ -32,21 +32,21 @@ module ExceptionHandler
   private
 
   def four_twenty_two(e)
-    json_response({success: false, message: e.message}, :unprocessable_entity)
+    json_response({ success: false, message: e.message }, :unprocessable_entity)
   end
 
   def unauthorised_request(e)
-    json_response({success: false, message: e.message}, :unauthorized)
+    json_response({ success: false, message: e.message }, :unauthorized)
   end
 
   # todo need to use below
   def unhandled_exception(e)
     Rails.logger.error("EXCEPTION ERROR - #{e}")
-    json_response({success: false, message: 'Something went wrong'}, :internal_server_error)
+    json_response({ success: false, message: 'Something went wrong' }, :internal_server_error)
   end
 
   def no_route_found(e)
-    json_response({success: false, message: 'No Route Found'}, 404)
+    json_response({ success: false, message: 'No Route Found' }, 404)
   end
 
 

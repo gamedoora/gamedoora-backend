@@ -24,6 +24,6 @@ class ApplicationController < ActionController::API
   end
 
   def error_occurred
-    render :json => {code: 500}
+    render :json => { code: 500 }
   end
 end
