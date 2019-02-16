@@ -30,4 +30,9 @@ Note that we're using the --api argument to tell Rails that we want an API appli
 * rails version = 5.2.2
 * should create own master.key file ```EDITOR=vi bin/rails credentials:edit```
 * to run server - ```rails s```
-* to run test scripts - ```bundle exec rspec```  
+* to run test scripts - ```bundle exec rspec```
+
+
+## When deploying to production:
+* change master.key file and change credentials file using first delete existing file and rewriting it using ```EDITOR=vi bin/rails credentials:edit``` 
+* change user token expiration time in lib/json_web_token.rb file. Default set to ```exp = 1.year.from_now```

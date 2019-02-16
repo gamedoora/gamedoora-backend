@@ -5,6 +5,7 @@
 
 # Enable parameter wrapping for JSON. You can disable this by setting :format to an empty array.
 ActiveSupport.on_load(:action_controller) do
+  # https://makandracards.com/makandra/46405-rails-wrap_parameters-for-your-api
   wrap_parameters format: []
 end
 

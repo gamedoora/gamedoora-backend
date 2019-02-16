@@ -31,3 +31,22 @@
 
 en:
   hello: "Hello world"
+  errors:
+    params_not_found: Params not found
+
+  authentication:
+    not_found: Sorry, %{record} not found.
+    invalid_password: Invalid password
+    user_not_exists: Invalid credentials
+    invalid_token: Invalid token
+    missing_token: Missing token
+    unauthorized_request: Unauthorized request
+    account_created_successfully: Account created successfully
+    account_created_unsuccessfully: Account could not be created
+    expired_token: Sorry, your token has expired. Please login to continue.
+    login_success: Authenticated Successfully
+
+  success:
+    user_login_success: User logged in successfully
+
+

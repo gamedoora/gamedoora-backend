@@ -1,9 +1,6 @@
-# require database cleaner at the top level
-require 'database_cleaner'
-
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
-ENV['RAILS_ENV'] ||= 'test'
+ENV['RAILS_ENV'] = 'test'
 require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
@@ -11,13 +8,21 @@ require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 
-# configure shoulda matchers to use rspec as the test framework and full matcher libraries for rails
+# custom code STARTS
+require 'database_cleaner'
+require 'shoulda-matchers'
+require 'factory_bot_rails'
+require 'faker'
+
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
     with.test_framework :rspec
     with.library :rails
   end
 end
+
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+
 
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -72,6 +77,10 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
+
+  # Custom config STARTS
+  #
+  #
   # add `FactoryBot` methods
   config.include FactoryBot::Syntax::Methods
 
@@ -87,4 +96,8 @@ RSpec.configure do |config|
       example.run
     end
   end
+
+
+  config.include RequestSpecHelper
+  config.include ControllerSpecHelper
 end
