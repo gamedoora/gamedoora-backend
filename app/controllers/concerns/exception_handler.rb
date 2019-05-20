@@ -5,6 +5,11 @@ module ExceptionHandler
 
   # Define custom attributes
   class AuthenticationError < StandardError
+    class LockedUser < StandardError
+    end
+
+    class DeletedUser < StandardError
+    end
   end
   class MissingToken < StandardError
   end
@@ -15,38 +20,43 @@ module ExceptionHandler
 
   included do
     rescue_from ::ActionController::RoutingError do |e|
-      json_response({ message: e.message }, :not_found)
+      json_error_response(e.message, nil, :not_found)
     end
     rescue_from StandardError, with: :unhandled_exception
     rescue_from ActiveRecord::RecordInvalid, with: :four_twenty_two
     rescue_from ExceptionHandler::AuthenticationError, with: :unauthorised_request
+    rescue_from ExceptionHandler::AuthenticationError::LockedUser, with: :inactive_user
+    rescue_from ExceptionHandler::AuthenticationError::DeletedUser, with: :deleted_user
     rescue_from ExceptionHandler::InvalidToken, with: :four_twenty_two
     rescue_from ExceptionHandler::MissingToken, with: :four_twenty_two
-    # rescue_from ActiveRecord::RecordNotFound do |e|
-    #   json_response({message: e.message}, :not_found)
-    # end
-
-
   end
 
   private
 
   def four_twenty_two(e)
-    json_response({ success: false, message: e.message }, :unprocessable_entity)
+    json_error_response(e.message, nil, :unprocessable_entity)
   end
 
   def unauthorised_request(e)
-    json_response({ success: false, message: e.message }, :unauthorized)
+    json_error_response(e.message, nil, :unauthorized)
   end
 
-  # todo need to use below
+  def inactive_user(e)
+    json_error_response(e.message, nil, :forbidden)
+  end
+
+  def deleted_user(e)
+    json_error_response(e.message, nil, :forbidden)
+  end
+
   def unhandled_exception(e)
-    Rails.logger.error("EXCEPTION ERROR - #{e}")
-    json_response({ success: false, message: 'Something went wrong' }, :internal_server_error)
+    Rails.logger.error("EXCEPTION ERROR - #{e}, Time = #{Time.now}")
+    json_error_response(Message.something_went_wrong, nil, :internal_server_error)
   end
 
   def no_route_found(e)
-    json_response({ success: false, message: 'No Route Found' }, 404)
+    Rails.logger.error("NO ROUTE EXCEPTION ERROR - #{e}, Time = #{Time.now}")
+    json_error_response('No Route Found', nil, 404)
   end
 
 

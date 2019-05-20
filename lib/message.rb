@@ -46,11 +46,23 @@ class Message
     I18n.t('authentication.login_success')
   end
 
+  def self.inactive_user
+    I18n.t('authentication.inactive_user')
+  end
+
+  def self.deleted_user
+    I18n.t('authentication.deleted_user')
+  end
+
   def self.something_went_wrong
     I18n.t('errors.something_went_wrong')
   end
 
   def self.params_not_found
     I18n.t('errors.params_not_found')
+  end
+
+    def self.params_validation_error
+    I18n.t('errors.params_validation')
   end
 end

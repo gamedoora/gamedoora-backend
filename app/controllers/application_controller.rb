@@ -3,8 +3,14 @@ class ApplicationController < ActionController::API
   include Response
   include ExceptionHandler
   before_action :authorize_request, :set_locale
+  skip_before_action :authorize_request, only: [:route_not_found]
 
   attr_reader :current_user
+
+
+  def route_not_found
+    json_error_response('No route found')
+  end
 
   private
 
@@ -26,4 +32,5 @@ class ApplicationController < ActionController::API
   def error_occurred
     render :json => { code: 500 }
   end
+
 end

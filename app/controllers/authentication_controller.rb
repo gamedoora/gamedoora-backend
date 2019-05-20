@@ -1,13 +1,16 @@
 # app/controllers/authentication_controller.rb
-class AuthenticationController < ApplicationController
+class AuthenticationController < ApplicationAuthenticationController
   skip_before_action :authorize_request, only: :authenticate
 
   # return auth token once user is authenticated
   def authenticate
-    user =
-      AuthenticateUser.new(auth_params[:email], auth_params[:password]).call
-    json_response(message: Message.login_success, auth_token: AuthenticateUser.auth_token(user.id))
-
+    begin
+      param! :email, String, required: true
+      param! :password, String, required: true
+      create_user_session(auth_params)
+    rescue RailsParam::Param::InvalidParameterError => e
+      params_validation_error(e.message)
+    end
   end
 
   private

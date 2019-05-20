@@ -11,4 +11,5 @@ Rails.application.routes.draw do
     get 'users', to: 'users#list_all'
   end
 
+  match '*path', to: 'application#route_not_found', via: :all
 end
