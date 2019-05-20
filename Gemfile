@@ -31,10 +31,16 @@ gem 'jwt', '2.1.0'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
+gem 'rails_param'
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '3.8.1'
+  gem 'rspec_api_documentation'
+  gem "apitome"
+
 end
 
 group :development do

@@ -24,3 +24,5 @@
 
 # ignore gemfile.lock
 /Gemfile.lock
+
+/doc/*

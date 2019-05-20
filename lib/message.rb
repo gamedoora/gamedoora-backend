@@ -28,6 +28,12 @@ class Message
     I18n.t('authentication.account_created_successfully')
   end
 
+
+  def self.user_exists
+    I18n.t('authentication.user_already_exists')
+  end
+
+
   def self.account_not_created
     I18n.t('authentication.account_created_unsuccessfully')
   end
@@ -38,5 +44,13 @@ class Message
 
   def self.login_success
     I18n.t('authentication.login_success')
+  end
+
+  def self.something_went_wrong
+    I18n.t('errors.something_went_wrong')
+  end
+
+  def self.params_not_found
+    I18n.t('errors.params_not_found')
   end
 end

@@ -33,6 +33,7 @@ en:
   hello: "Hello world"
   errors:
     params_not_found: Params not found
+    something_went_wrong: Something went wrong, please try again later
 
   authentication:
     not_found: Sorry, %{record} not found.
@@ -42,6 +43,7 @@ en:
     missing_token: Missing token
     unauthorized_request: Unauthorized request
     account_created_successfully: Account created successfully
+    user_already_exists: User with this account already exists
     account_created_unsuccessfully: Account could not be created
     expired_token: Sorry, your token has expired. Please login to continue.
     login_success: Authenticated Successfully

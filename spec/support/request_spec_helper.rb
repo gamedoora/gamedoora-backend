@@ -6,4 +6,9 @@ module RequestSpecHelper
   def json
     JSON.parse(response.body)
   end
+
+  def rspec_doc_json
+    JSON.parse(response_body)
+  end
+
 end
