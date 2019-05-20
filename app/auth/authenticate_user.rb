@@ -60,7 +60,7 @@ class AuthenticateUser
     raise(ExceptionHandler::AuthenticationError::LockedUser, Message.inactive_user) unless user.is_active?
 
     # check if user in deleted
-    raise(ExceptionHandler::AuthenticationError::LockedUser, Message.deleted_user) if user.is_deleted?
+    raise(ExceptionHandler::AuthenticationError::DeletedUser, Message.deleted_user) if user.is_deleted?
 
     # verify user credentials and match passwords
     return user if user&.authenticate(password.to_s.strip)

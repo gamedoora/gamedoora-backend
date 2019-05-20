@@ -28,6 +28,7 @@ module Authentication
 
     def create_user(params)
       user = User.create_user(params)
+      user.create_confirmation_token
       build_success_signup_response(user, Settings.user.is_verifiable.present?)
 
       # send user welcome email
@@ -47,9 +48,9 @@ module Authentication
     def build_success_signup_response(user, is_verifiable)
       success_authentication_response(
         user,
-        Message.account_created,
+        is_verifiable ? Message.unverified_account_created : Message.account_created,
         :created,
-        is_verifiable.present? ? nil : request.remote_ip
+        is_verifiable ? nil : request.remote_ip
       )
     end
   end

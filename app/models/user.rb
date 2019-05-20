@@ -28,10 +28,6 @@ class User < ApplicationRecord
   validates_presence_of :first_name, :email, :password_digest
   validates_uniqueness_of :email
 
-
-  # CALLBACKS
-  before_create :create_confirmation_token
-
   #### CLASS METHODS START #######
   def self.create_user(params)
     create!(params)
@@ -44,19 +40,19 @@ class User < ApplicationRecord
 
   def complete_name_view
     name = first_name.titleize
-    name += "#{name} #{middle_name.titleize}" if middle_name.present?
-    name += "#{name} #{last_name.titleize}" if last_name.present?
+    name += " #{middle_name.titleize}" if middle_name.present?
+    name += " #{last_name.titleize}" if last_name.present?
     name
   end
 
   ###### INSTANCE METHOD ENDS ####
 
-  private
-
   def create_confirmation_token
-    if Settings.user.is_verifiable.present? && self.confirmation_token.blank?
+    if Settings.user.is_verifiable.present?
       self.confirmation_token = SecureRandom.urlsafe_base64.to_s
       self.confirmation_sent_at = Time.now
+      self.confirmed_at = nil
+      save
     end
   end
 

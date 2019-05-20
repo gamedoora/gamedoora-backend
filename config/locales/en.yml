@@ -44,6 +44,7 @@ en:
     missing_token: Missing token
     unauthorized_request: Unauthorized request
     account_created_successfully: Account created successfully
+    unverified_account_created_successfully: Account created successfully. Please check your email for confirmation code
     user_already_exists: User with this account already exists
     account_created_unsuccessfully: Account could not be created
     expired_token: Sorry, your token has expired. Please login to continue.

@@ -24,6 +24,10 @@ class Message
     I18n.t('authentication.unauthorized_request')
   end
 
+  def self.unverified_account_created
+    I18n.t('authentication.unverified_account_created_successfully')
+  end
+
   def self.account_created
     I18n.t('authentication.account_created_successfully')
   end
@@ -90,7 +94,7 @@ class Message
     I18n.t('errors.params_not_found')
   end
 
-    def self.params_validation_error
+  def self.params_validation_error
     I18n.t('errors.params_validation')
   end
 end
