@@ -17,6 +17,7 @@ module Authentication
     def create_user(params)
       user = User.create!(params)
       build_success_signup_response(user)
+      Mailers::AuthenticationMailer.signup(user).deliver_later
     end
 
     def build_user_exists_response

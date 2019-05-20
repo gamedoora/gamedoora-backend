@@ -31,7 +31,22 @@ Rails.application.configure do
   # Store uploaded files on the local file system in a temporary directory
   config.active_storage.service = :test
 
+  config.active_job.queue_adapter     = :sidekiq
+  config.active_job.queue_name_prefix = "gamedoora-backend-sidekiq"
+
   config.action_mailer.perform_caching = false
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+    :address => 'smtp.gmail.com',
+    port: 587,
+    domain: 'gmail.com',
+    authentication: 'plain',
+    enable_starttls_auto: true,
+    user_name: 'mailgamedoora@gmail.com',
+    password: 'Alibaba@gd20'
+  }
+
 
   # Tell Action Mailer not to deliver emails to the real world.
   # The :test delivery method accumulates sent emails in the

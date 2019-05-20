@@ -31,15 +31,24 @@ gem 'jwt', '2.1.0'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
+# Gem to validate params
 gem 'rails_param'
 
+gem 'redis'
+gem 'redis-namespace'
+
+# Both below gems for sidekiq
+gem 'sidekiq', '4.0.0'
+gem 'sinatra', '2.0.5' # for sidekiq monitor
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '3.8.1'
   gem 'rspec_api_documentation'
-  gem "apitome"
+  gem 'apitome'
+  gem 'mail_safe'
+  gem 'letter_opener'
 
 end
 

@@ -27,8 +27,11 @@ All of the backend services/Apis at one place
 * to run server - ```rails s```
 * to run test scripts - ```bundle exec rspec```
 * to generate docs -  ```bundle exec rake docs:generate```
-
+* to run sidekiq(provide environment name like development)  - ```bundle exec sidekiq --environment development -C config/sidekiq.yml```
+* using mail_opener for opening mail in development mode
+* using mail_safe to prevent delivery of mail while in testing
 
 ### When deploying to production:
 * change master.key file and change credentials file using first delete existing file and rewriting it using ```EDITOR=vi bin/rails credentials:edit``` 
 * change user token expiration time in lib/json_web_token.rb file. Default set to ```exp = 1.year.from_now```
+* to run sidekiq(provide environment name like production)  - ```bundle exec sidekiq --environment production -C config/sidekiq.yml ```
