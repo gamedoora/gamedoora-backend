@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'rspec_api_documentation/dsl'
 
-resource 'Signup API', type: :request do
+resource 'Authentication - Signup API', type: :request do
   # set test valid and invalid credentials
 
   let!(:user) { create(:user) }

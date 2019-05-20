@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'rspec_api_documentation/dsl'
 
-resource 'Login API', type: :request do
+resource 'Authentication - Login API', type: :request do
   # create test user(s)
   let(:user) { create(:user) }
   let(:unverified_user) { create(:unverified_user) }
