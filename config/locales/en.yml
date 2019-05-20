@@ -50,6 +50,13 @@ en:
     login_success: Authenticated Successfully
     inactive_user: Sorry, your account is currently suspended. Please contact administrator for further instruction
     deleted_user: Sorry, your account is currently deleted. Please contact administrator for further instruction
+    unverified_user: Your account is pending for verification
+    invalid_confirmation_token: This is invalid token
+    expired_confirmation_token: This token is expired
+    verified_confirmation_token: User email is verified
+    email_not_found: Invalid Email Address
+    user_already_verified: Your account is already verified
+    sent_confirmation_token: Verification code sent successfully
 
   success:
     user_login_success: User logged in successfully

@@ -50,6 +50,34 @@ class Message
     I18n.t('authentication.inactive_user')
   end
 
+  def self.unverified_user
+    I18n.t('authentication.unverified_user')
+  end
+
+  def self.invalid_confirmation_token
+    I18n.t('authentication.invalid_confirmation_token')
+  end
+
+  def self.email_not_found
+    I18n.t('authentication.email_not_found')
+  end
+
+  def self.user_already_verified
+    I18n.t('authentication.user_already_verified')
+  end
+
+  def self.expired_confirmation_token
+    I18n.t('authentication.expired_confirmation_token')
+  end
+
+  def self.sent_verification_code
+    I18n.t('authentication.sent_confirmation_token')
+  end
+
+  def self.verified_confirmation_token
+    I18n.t('authentication.verified_confirmation_token')
+  end
+
   def self.deleted_user
     I18n.t('authentication.deleted_user')
   end

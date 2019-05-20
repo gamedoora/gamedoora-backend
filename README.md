@@ -34,9 +34,17 @@ All of the backend services/Apis at one place
 ### When deploying to production:
 * change master.key file and change credentials file using first delete existing file and rewriting it using ```EDITOR=vi bin/rails credentials:edit``` 
 * change user token expiration time in lib/json_web_token.rb file. Default set to ```exp = 1.year.from_now```
-* to run sidekiq(provide environment name like production)  - ```bundle exec sidekiq --environment production -C config/sidekiq.yml ```
+* to run sidekiq(provide environment name like production)  - ```bundle exec sidekiq -d --environment production -C config/sidekiq.yml ```
 * Check if required environment check for mail safe
 
 
 ## NOTES
 * while adding new gem, mention exact version of that time you have added in gemfile only
+
+
+# How to deploy sidekiq on production
+* sidekiq --help 
+* use -d option as daemon
+* example: ```bundle exec sidekiq -d -L sidekiq.log -C config/sidekiq.yml -e production```
+* https://redpanthers.co/deploying-sidekiq-ubuntu-16-04/
+* Few things are configurable like whether it is required to verify user or not

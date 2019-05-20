@@ -7,7 +7,7 @@ class AuthenticationController < ApplicationAuthenticationController
     begin
       param! :email, String, required: true
       param! :password, String, required: true
-      create_user_session(auth_params)
+      create_user_session(auth_params, request.remote_ip)
     rescue RailsParam::Param::InvalidParameterError => e
       params_validation_error(e.message)
     end
