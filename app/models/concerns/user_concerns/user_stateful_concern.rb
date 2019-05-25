@@ -32,12 +32,24 @@ module UserConcerns
       !confirmed?
     end
 
+    def expired_confirmation_token?
+      return true unless confirmation_sent_at.present?
+
+      confirmation_sent_at.present? && ((confirmation_sent_at + Settings.user.confirmation_token_expiry) < Time.now)
+    end
+
     def reset?
       reset_password_token.present?
     end
 
     def not_reset?
       !reset?
+    end
+
+    def expired_reset_token?
+      return true unless reset_password_sent_at.present?
+
+      reset_password_sent_at.present? && ((reset_password_sent_at + Settings.user.reset_token_expiry) < Time.now)
     end
   end
 end

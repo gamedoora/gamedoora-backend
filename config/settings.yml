@@ -4,3 +4,4 @@
 user:
   is_verifiable: true
   confirmation_token_expiry: <%= 24.hours %>
+  reset_token_expiry: <%= 24.hours %>

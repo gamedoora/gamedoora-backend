@@ -29,7 +29,7 @@ module Authentication
       user = User.where(confirmation_token: verification_code.to_s.strip).first
       build_invalid_confirmation_token_response && return unless user.present?
       build_already_verified_account_response && return if user.confirmed?
-      build_expired_confirmation_token_response && return if (user.confirmation_sent_at + Settings.user.confirmation_token_expiry) < Time.now
+      build_expired_confirmation_token_response && return if user.expired_confirmation_token?
       user.verify!
       Mailers::AuthenticationMailer.successfully_verified_account_mail(user).deliver_later
       build_verification_success_response(user)
