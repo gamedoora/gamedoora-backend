@@ -8,9 +8,9 @@ Rails.application.routes.draw do
 
   # user signup/confirmation/resend confirmation routes
   post 'auth/signup', to: 'users#create'
-  post 'auth/verify-email', to: 'users#email_verification'
-  post 'auth/send-verification-code', to: 'users#send_verification_code'
-  post 'auth/resend-verification-code', to: 'users#send_verification_code'
+  post 'auth/signup/verify-email', to: 'users#email_verification'
+  post 'auth/signup/send-verification-code', to: 'users#send_verification_code'
+  post 'auth/signup/resend-verification-code', to: 'users#send_verification_code'
 
 
   # namespace the controllers without affecting the URI

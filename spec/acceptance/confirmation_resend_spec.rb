@@ -13,8 +13,8 @@ resource 'Authentication - Resend Confirmation API', type: :request do
   header 'Host', 'api.gamedoora.org'
   header 'Accept', 'application/vnd.gamedoora.v1'
 
-  describe 'auth/send-verification-code' do
-    post '/auth/send-verification-code' do
+  describe 'auth/signup/send-verification-code' do
+    post '/auth/signup/send-verification-code' do
       let(:raw_post) { params.to_json }
       parameter :email, 'Email for the user to be sent confirmation code', required: true, type: :string
 

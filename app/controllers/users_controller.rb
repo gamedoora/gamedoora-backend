@@ -15,7 +15,7 @@ class UsersController < ApplicationAuthenticationController
     end
   end
 
-  # POST auth/verify-email
+  # POST auth/signup/verify-email
   # params required is verification_code
   # return authenticated token upon success
   def email_verification
@@ -27,7 +27,7 @@ class UsersController < ApplicationAuthenticationController
     end
   end
 
-  # POST auth/send-verification-code
+  # POST auth/signup/send-verification-code
   # params required is email
   # return authenticated token upon success
   def send_verification_code

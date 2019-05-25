@@ -13,15 +13,15 @@ resource 'Authentication - Verify Email API', type: :request do
   header 'Host', 'api.gamedoora.org'
   header 'Accept', 'application/vnd.gamedoora.v1'
 
-  describe 'auth/verify-email' do
-    post '/auth/verify-email' do
+  describe 'auth/signup/verify-email' do
+    post '/auth/signup/verify-email' do
       let(:raw_post) { params.to_json }
       parameter :verification_code, 'Confirmation Code for the user', required: true, type: :string
 
       # case 1
       unless Settings.user.is_verifiable.present?
         context 'When settings is_verifiable is disabled' do
-          before { post '/auth/verify-email', headers: headers }
+          before { post '/auth/signup/verify-email', headers: headers }
           let(:verification_code) { unverified_user.confirmation_token }
 
           # We can provide multiple examples for each endpoint, highlighting different aspects of them.
@@ -37,7 +37,7 @@ resource 'Authentication - Verify Email API', type: :request do
 
       # Case 2
       context 'When wrong token is entered' do
-        before { post '/auth/verify-email', headers: headers }
+        before { post '/auth/signup/verify-email', headers: headers }
         let(:verification_code) { 'wrongTokenString' }
 
         # We can provide multiple examples for each endpoint, highlighting different aspects of them.
@@ -52,7 +52,7 @@ resource 'Authentication - Verify Email API', type: :request do
 
       # Case 3
       context 'When token is expired' do
-        before { post '/auth/verify-email', headers: headers }
+        before { post '/auth/signup/verify-email', headers: headers }
         let(:verification_code) { expired_token_user.confirmation_token }
 
         # We can provide multiple examples for each endpoint, highlighting different aspects of them.
@@ -67,7 +67,7 @@ resource 'Authentication - Verify Email API', type: :request do
 
       # case 4
       context 'When request is valid' do
-        before { post '/auth/verify-email', headers: headers }
+        before { post '/auth/signup/verify-email', headers: headers }
         let(:verification_code) { unverified_user.confirmation_token }
 
         # We can provide multiple examples for each endpoint, highlighting different aspects of them.
@@ -84,7 +84,7 @@ resource 'Authentication - Verify Email API', type: :request do
 
       # case 5
       context 'When user is already verified' do
-        before { post '/auth/verify-email', headers: headers }
+        before { post '/auth/signup/verify-email', headers: headers }
         let(:verification_code) { token_verified_user.confirmation_token }
 
         # We can provide multiple examples for each endpoint, highlighting different aspects of them.
