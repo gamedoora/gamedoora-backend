@@ -18,7 +18,8 @@
 # is based on Settings.user.confirmation_token_expiry
 
 class User < ApplicationRecord
-  include UserStateTransitionConcern
+  include UserConcerns::UserStateTransitionConcern
+  include UserConcerns::UserStatefulConcern
 
 
   # encrypt password

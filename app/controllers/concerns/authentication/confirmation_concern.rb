@@ -28,7 +28,7 @@ module Authentication
       build_unauthorized_verification_response && return unless Settings.user.is_verifiable.present?
       user = User.where(confirmation_token: verification_code.to_s.strip).first
       build_invalid_confirmation_token_response && return unless user.present?
-      build_already_verified_account_response && return if user.confirmed_at.present?
+      build_already_verified_account_response && return if user.confirmed?
       build_expired_confirmation_token_response && return if (user.confirmation_sent_at + Settings.user.confirmation_token_expiry) < Time.now
       user.verify!
       Mailers::AuthenticationMailer.successfully_verified_account_mail(user).deliver_later
@@ -39,7 +39,7 @@ module Authentication
       build_unauthorized_verification_response unless Settings.user.is_verifiable.present?
       user = User.where(email: email.to_s.strip.downcase).first
       build_email_not_found_response && return unless user.present?
-      build_already_verified_account_response && return if user.confirmed_at.present?
+      build_already_verified_account_response && return if user.confirmed?
       build_unauthorized_verification_response && return unless user.confirmation_token.present?
       user.create_confirmation_token
       Mailers::AuthenticationMailer.send_confirmation_token_mail(user).deliver_later

@@ -53,14 +53,14 @@ class AuthenticateUser
 
     if Settings.user.is_verifiable.present?
       # check if user is verified or not
-      raise(ExceptionHandler::AuthenticationError::UnverifiedUser, Message.unverified_user) unless user.confirmed_at.present?
+      raise(ExceptionHandler::AuthenticationError::UnverifiedUser, Message.unverified_user) if user.not_confirmed?
     end
 
     # check if user is inactive
-    raise(ExceptionHandler::AuthenticationError::LockedUser, Message.inactive_user) unless user.is_active?
+    raise(ExceptionHandler::AuthenticationError::LockedUser, Message.inactive_user) if user.inactive?
 
     # check if user in deleted
-    raise(ExceptionHandler::AuthenticationError::DeletedUser, Message.deleted_user) if user.is_deleted?
+    raise(ExceptionHandler::AuthenticationError::DeletedUser, Message.deleted_user) if user.deleted?
 
     # verify user credentials and match passwords
     return user if user&.authenticate(password.to_s.strip)
