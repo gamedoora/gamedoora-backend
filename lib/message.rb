@@ -97,4 +97,30 @@ class Message
   def self.params_validation_error
     I18n.t('errors.params_validation')
   end
+
+  def self.user_triggered_reset
+    I18n.t('authentication.user_triggered_reset')
+  end
+  def self.user_already_trigger_reset
+    I18n.t('authentication.user_already_triggered_reset')
+  end
+
+  def self.sent_reset_token
+    I18n.t('authentication.sent_reset_token')
+  end
+
+  def self.invalid_reset_token
+    I18n.t('authentication.invalid_reset_token')
+  end
+
+  def self.reset_token_verified
+    I18n.t('authentication.verify_reset_token')
+  end
+
+  def self.reset_password_updated
+    I18n.t('authentication.reset_password_updated')
+  end
+
+
+
 end

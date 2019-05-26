@@ -34,6 +34,7 @@ module UserConcerns
 
     def expired_confirmation_token?
       return true unless confirmation_sent_at.present?
+      return false unless Settings.try(:user).try(:confirmation_token_expiry).present?
 
       confirmation_sent_at.present? && ((confirmation_sent_at + Settings.user.confirmation_token_expiry) < Time.now)
     end
@@ -48,6 +49,7 @@ module UserConcerns
 
     def expired_reset_token?
       return true unless reset_password_sent_at.present?
+      return false unless Settings.try(:user).try(:reset_token_expiry).present?
 
       reset_password_sent_at.present? && ((reset_password_sent_at + Settings.user.reset_token_expiry) < Time.now)
     end

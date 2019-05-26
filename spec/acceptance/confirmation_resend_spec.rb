@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'rspec_api_documentation/dsl'
 
-resource 'Authentication - Resend Confirmation API', type: :request do
+resource 'Authentication - Signup - Resend Confirmation', type: :request do
   # create test user(s)
   let(:user) { create(:user) }
   let(:unverified_user) { create(:unverified_user) }

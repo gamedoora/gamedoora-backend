@@ -32,5 +32,20 @@ module UserConcerns
     def undo_delete!
       update_attributes(is_deleted: false)
     end
+
+    def reset!
+      update_attributes(
+        reset_password_token: self.reset_password_token || SecureRandom.urlsafe_base64.to_s,
+        reset_password_sent_at: Time.now
+      )
+    end
+
+    def verify_reset!(password)
+      update_attributes(
+        reset_password_token: nil,
+        reset_password_sent_at: nil,
+        password: password
+      )
+    end
   end
 end

@@ -7,6 +7,7 @@ resource 'Authentication - Login API', type: :request do
   let(:unverified_user) { create(:unverified_user) }
   let(:inactive_user) { create(:inactive_user) }
   let(:deleted_user) { create(:deleted_user) }
+  let(:reset_user) { create(:reset_user) }
 
 
   header 'Content-Type', 'Application/json'
@@ -76,15 +77,27 @@ resource 'Authentication - Login API', type: :request do
         end
       end
 
-      context 'When request is invalid' do
+      context 'When email is not registered' do
         let(:email) { Faker::Internet.email }
         let(:password) { Faker::Internet.password }
         # We can provide multiple examples for each endpoint, highlighting different aspects of them.
-        example 'Login Fail' do
-          explanation 'Login error including invalid credentials or others'
+        example 'Email not registered' do
+          explanation 'Email not found error'
           do_request
           expect(status).to eq(401)
-          expect(rspec_doc_json['message']).to match(/Invalid credentials/)
+          expect(rspec_doc_json['message']).to match(Message.user_not_exists)
+        end
+      end
+
+      context 'When request is invalid' do
+        let(:email) { user.email }
+        let(:password) { Faker::Internet.password }
+        # We can provide multiple examples for each endpoint, highlighting different aspects of them.
+        example 'Invalid Password' do
+          explanation 'Login error including invalid password'
+          do_request
+          expect(status).to eq(401)
+          expect(rspec_doc_json['message']).to match(Message.invalid_credentials)
         end
       end
 
@@ -98,6 +111,18 @@ resource 'Authentication - Login API', type: :request do
           expect(status).to eq(422)
           expect(rspec_doc_json['message']).to match(/Params validation error/)
           expect(rspec_doc_json['params_validation_message']).not_to be_empty
+        end
+      end
+
+      context 'When user has requested for a reset password' do
+        let(:email) { reset_user.email }
+        let(:password) { reset_user.password }
+        # We can provide multiple examples for each endpoint, highlighting different aspects of them.
+        example 'Reset requested user' do
+          explanation 'Login error if user has already requested reset request'
+          do_request
+          expect(status).to eq(403)
+          expect(rspec_doc_json['message']).to match(Message.user_triggered_reset)
         end
       end
 

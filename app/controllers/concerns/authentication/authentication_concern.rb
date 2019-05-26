@@ -18,5 +18,6 @@ module Authentication
     include SignupConcern
     include ConfirmationConcern
     include SessionConcern
+    include PasswordResetConcern
   end
 end

@@ -15,6 +15,15 @@ FactoryBot.define do
       confirmed_at nil
     end
 
+    factory :unverified_reset_user do
+      first_name "Unverified Reset User"
+      confirmation_token SecureRandom.urlsafe_base64.to_s
+      confirmation_sent_at Time.now
+      confirmed_at nil
+      reset_password_token SecureRandom.urlsafe_base64.to_s
+      reset_password_sent_at Time.now
+    end
+
     factory :inactive_user do
       first_name "Inactive user"
       is_active false
@@ -44,6 +53,26 @@ FactoryBot.define do
       confirmation_sent_at Time.now - 48.hours
       confirmed_at nil
     end
+
+    factory :reset_user do
+      first_name 'Reset User'
+      reset_password_token SecureRandom.urlsafe_base64.to_s
+      reset_password_sent_at Time.now
+    end
+
+    factory :reset_expired_user do
+      first_name 'Reset Expired User'
+      reset_password_token SecureRandom.urlsafe_base64.to_s
+      reset_password_sent_at Time.now - 48.hours
+    end
+
+    factory :already_reset_user do
+      first_name 'Already reset user'
+      reset_password_token SecureRandom.urlsafe_base64.to_s
+      reset_password_sent_at Time.now
+    end
+
+
   end
 end
 

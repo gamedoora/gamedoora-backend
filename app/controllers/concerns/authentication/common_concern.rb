@@ -35,7 +35,8 @@ module Authentication
                 complete_name: user.complete_name_view,
                 email: user.email,
                 dob: user.dob,
-                is_verified: is_verified?(user) },
+                is_verified: is_verified?(user),
+                is_reset: user.reset? },
         auth_token: generate_auth_token(user)
       }
     end
@@ -46,7 +47,7 @@ module Authentication
     end
 
     def generate_auth_token(user)
-      AuthenticateUser.auth_token(user.id) if !Settings.user.is_verifiable.present? || user.confirmed_at.present?
+      AuthenticateUser.auth_token(user.id) if user.not_reset? && (!Settings.user.is_verifiable.present? || user.confirmed_at.present?)
     end
 
   end

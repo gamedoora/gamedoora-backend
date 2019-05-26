@@ -12,6 +12,11 @@ Rails.application.routes.draw do
   post 'auth/signup/send-verification-code', to: 'users#send_verification_code'
   post 'auth/signup/resend-verification-code', to: 'users#send_verification_code'
 
+  # password reset related modules
+  post 'auth/reset', to: 'password_reset#create'
+  post 'auth/reset/resend-token', to: 'password_reset#resend_token'
+  post 'auth/reset/verify-token', to: 'password_reset#verify_token'
+  post 'auth/reset/update-password', to: 'password_reset#update_password'
 
   # namespace the controllers without affecting the URI
   scope module: :v1, constraints: ApiVersion.new('v1', true) do

@@ -13,6 +13,9 @@ module ExceptionHandler
 
     class UnverifiedUser < StandardError
     end
+
+    class ResetUser < StandardError
+    end
   end
   class MissingToken < StandardError
   end
@@ -31,6 +34,7 @@ module ExceptionHandler
     rescue_from ExceptionHandler::AuthenticationError::LockedUser, with: :inactive_user
     rescue_from ExceptionHandler::AuthenticationError::DeletedUser, with: :deleted_user
     rescue_from ExceptionHandler::AuthenticationError::UnverifiedUser, with: :unverified_user
+    rescue_from ExceptionHandler::AuthenticationError::ResetUser, with: :reset_user
     rescue_from ExceptionHandler::InvalidToken, with: :four_twenty_two
     rescue_from ExceptionHandler::MissingToken, with: :four_twenty_two
   end
@@ -54,6 +58,10 @@ module ExceptionHandler
   end
 
   def unverified_user(e)
+    json_error_response(e.message, nil, :forbidden)
+  end
+
+  def reset_user(e)
     json_error_response(e.message, nil, :forbidden)
   end
 

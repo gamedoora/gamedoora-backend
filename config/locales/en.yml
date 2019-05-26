@@ -39,7 +39,7 @@ en:
   authentication:
     not_found: Sorry, %{record} not found.
     invalid_password: Invalid password
-    user_not_exists: Invalid credentials
+    user_not_exists: This Email ID is not registered with our platform
     invalid_token: Invalid token
     missing_token: Missing token
     unauthorized_request: Unauthorized request
@@ -58,6 +58,12 @@ en:
     email_not_found: Invalid Email Address
     user_already_verified: Your account is already verified
     sent_confirmation_token: Verification code sent successfully
+    user_triggered_reset: You have requested for a reset password
+    user_already_triggered_reset: You have already requested for a reset password
+    sent_reset_token: Reset password token is sent successfully to your email
+    invalid_reset_token: This is invalid token
+    verify_reset_token: Your token is verified, please reset your password
+    reset_password_updated: Your password has been reset successfully
 
   success:
     user_login_success: User logged in successfully

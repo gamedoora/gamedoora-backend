@@ -56,6 +56,9 @@ class AuthenticateUser
       raise(ExceptionHandler::AuthenticationError::UnverifiedUser, Message.unverified_user) if user.not_confirmed?
     end
 
+    # check if user is reset triggered
+    raise(ExceptionHandler::AuthenticationError::ResetUser, Message.user_triggered_reset) if user.reset?
+
     # check if user is inactive
     raise(ExceptionHandler::AuthenticationError::LockedUser, Message.inactive_user) if user.inactive?
 

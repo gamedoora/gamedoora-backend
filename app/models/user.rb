@@ -50,7 +50,7 @@ class User < ApplicationRecord
 
   def create_confirmation_token
     if Settings.user.is_verifiable.present?
-      self.confirmation_token = SecureRandom.urlsafe_base64.to_s
+      self.confirmation_token = self.confirmation_token || SecureRandom.urlsafe_base64.to_s
       self.confirmation_sent_at = Time.now
       self.confirmed_at = nil
       save
