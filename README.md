@@ -3,8 +3,11 @@ Gamedoora API Service
 
 All of the backend services/Apis at one place
 
+## DONE MODULES
+* Authentication (Signup, confirmation, login, reset)
+
 ### Modules To Be Developed
-* User Module (Signup, login, reset, profile page, change password)
+* User Module (profile page, change password)
 * Social Sign in
 * Studio (Creation, updation, stream, request to join, members, accept/reject)
 * Project Management (tasks) 
