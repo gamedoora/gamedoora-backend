@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   mount Sidekiq::Web => '/sidekiq'
 
+  match '', to: 'application#ping', via: :all
   # user authentication related routes
   post 'auth/login', to: 'authentication#authenticate'
 

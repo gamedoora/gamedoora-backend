@@ -3,10 +3,13 @@ class ApplicationController < ActionController::API
   include Response
   include ExceptionHandler
   before_action :authorize_request, :set_locale
-  skip_before_action :authorize_request, only: [:route_not_found]
+  skip_before_action :authorize_request, only: [:route_not_found, :ping]
 
   attr_reader :current_user
 
+  def ping
+    json_response('OK' )
+  end
 
   def route_not_found
     json_error_response('No route found')
