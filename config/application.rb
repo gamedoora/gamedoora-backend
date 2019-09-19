@@ -34,6 +34,7 @@ module GamedooraBackend
     config.api_only = true
 
     config.autoload_paths += %W( lib/  )
+    config.eager_load_paths += %W( lib/  )
 
     ## use rspec instead of minitest
     config.generators do |g|
