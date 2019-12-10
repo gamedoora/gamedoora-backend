@@ -36,6 +36,14 @@ module GamedooraBackend
     config.autoload_paths += %W( lib/  )
     config.eager_load_paths += %W( lib/  )
 
+    # Changes for docker
+    logger = ActiveSupport::Logger.new(STDOUT)
+    logger.formatter = config.log_formatter
+    config.log_tags = [:subdomain, :uuid]
+    config.logger = ActiveSupport::TaggedLogging.new(logger)
+    config.redis = { url: ENV['REDIS_URL'] }
+
+
     ## use rspec instead of minitest
     config.generators do |g|
       g.test_framework :rspec,

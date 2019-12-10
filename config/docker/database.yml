@@ -1,3 +1,5 @@
+# SAMPLE DATABASE YML FILE WHILE DOCKERISATION
+# PLACE THIS IS CONFIG folder of app and replace with database.yml file
 default: &default
   adapter: mysql2
   encoding: utf8mb4
