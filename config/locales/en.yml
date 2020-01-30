@@ -1,0 +1,71 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  hello: "Hello world"
+  errors:
+    params_not_found: Params not found
+    something_went_wrong: Something went wrong, please try again later
+    params_validation: Params validation error
+
+  authentication:
+    not_found: Sorry, %{record} not found.
+    invalid_password: Invalid password
+    user_not_exists: This Email ID is not registered with our platform
+    invalid_token: Invalid token
+    missing_token: Missing token
+    unauthorized_request: Unauthorized request
+    account_created_successfully: Account created successfully
+    unverified_account_created_successfully: Account created successfully. Please check your email for confirmation code
+    user_already_exists: User with this account already exists
+    account_created_unsuccessfully: Account could not be created
+    expired_token: Sorry, your token has expired. Please login to continue.
+    login_success: Authenticated Successfully
+    inactive_user: Sorry, your account is currently suspended. Please contact administrator for further instruction
+    deleted_user: Sorry, your account is currently deleted. Please contact administrator for further instruction
+    unverified_user: Your account is pending for verification
+    invalid_confirmation_token: This is invalid token
+    expired_confirmation_token: This token is expired
+    verified_confirmation_token: User email is verified
+    email_not_found: Invalid Email Address
+    user_already_verified: Your account is already verified
+    sent_confirmation_token: Verification code sent successfully
+    user_triggered_reset: You have requested for a reset password
+    user_already_triggered_reset: You have already requested for a reset password
+    sent_reset_token: Reset password token is sent successfully to your email
+    invalid_reset_token: This is invalid token
+    verify_reset_token: Your token is verified, please reset your password
+    reset_password_updated: Your password has been reset successfully
+
+  success:
+    user_login_success: User logged in successfully
+
+

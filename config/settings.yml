@@ -1,0 +1,7 @@
+# common settings needs to be here
+# environment specific settings need to go into config/settings/<environment>.yml
+
+user:
+  is_verifiable: true
+  confirmation_token_expiry: <%= 24.hours %>
+  reset_token_expiry: <%= 24.hours %>
