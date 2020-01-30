@@ -1,0 +1,7 @@
+# config/sidekiq.yml
+
+---
+:concurrency: 1
+:queues:
+- gamedoora-backend-sidekiq_default
+- gamedoora-backend-sidekiq_mailers
